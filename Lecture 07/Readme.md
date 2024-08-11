@@ -1,4 +1,4 @@
-# C++ Programming Topics
+# C++ Programming Topic 07
 
 ## Operator Overloading and Friend Classes
 Learn about redefining operators for custom classes and using friend classes and functions in C++. The example implementations include complex numbers and `Nvector`.
