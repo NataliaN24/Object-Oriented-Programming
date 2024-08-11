@@ -1,6 +1,4 @@
-# C++ Programming Topics
-
-C++ Programming Topic 08
+# C++ Programming Topic 08
 
 ## Static Member Data, Exceptions, and Exception Handling
 
