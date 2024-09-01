@@ -21,7 +21,7 @@ template<typename T, unsigned S>
 	{
 		return;
 	}
-	T[size++] = obj;
+	arr[size++] = obj;
 }
 
 template<typename T, unsigned S>
@@ -31,7 +31,7 @@ void MyStack<T, S>::push(T&& obj)
 	 {
 		 return;
 	 }
-	 T[size++] = std::move(obj);
+	 arr[size++] = std::move(obj);
 }
 
 template<typename T, unsigned S>
