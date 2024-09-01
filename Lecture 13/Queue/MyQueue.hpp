@@ -34,7 +34,7 @@ public:
 };
 
 template<typename T>
-inline void MyQueue<T>::resize()
+void MyQueue<T>::resize()
 {
 	T* resized = new T[capacity * 2];
 	for (int i = 0; i < size; ++i)
@@ -182,7 +182,7 @@ const T& MyQueue<T>::peek() const
 }
 
 template<typename T>
-inline bool MyQueue<T>::isEmpty() const
+bool MyQueue<T>::isEmpty() const
 {
 	return size == 0;
 }
