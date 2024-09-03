@@ -1,8 +1,10 @@
 #pragma once
 #include<fstream>
 #include"Utills.h"
+
 constexpr int MAX_SIZE = 1024;
 constexpr int ORIGIN_AND_DEST_SIZE = 64;
+
 class FlightsScanner
 {
 	char inputFileName[MAX_SIZE] = " ";
