@@ -13,7 +13,7 @@ class DynamicSet
 
 	unsigned getBucketIndex(unsigned num) const;
 public:
-	DynamicSet(unsigned n); // [0....n] (n + 1 числа)
+	DynamicSet(unsigned n); 
 
 	DynamicSet(const DynamicSet& other);
 	DynamicSet& operator=(const DynamicSet& other);
