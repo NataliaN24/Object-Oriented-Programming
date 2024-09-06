@@ -42,7 +42,7 @@ template <class T>
 std::ostream& operator<<(std::ostream& os, const ArrayView<T>& view) 
 {
     const T* iter = view.begin;
-    while (iter!- view.end)
+    while (iter!= view.end)
     {
         os << (*iter);
         iter++;
