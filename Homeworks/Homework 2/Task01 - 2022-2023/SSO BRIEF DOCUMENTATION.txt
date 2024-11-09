@@ -1,0 +1,18 @@
+The class MyStringSSO is a string class that provides a way to store and manipulate strings with small sting optimization which optimizes the memory usage for small strings.The optimization aplies to strings whose length is less than or equal to max_length constant which is 15 in this case.For such strings,the data is stored in a char array ch of size max_length + 1->for '\0' within the string object.
+
+On the other hand for strings that are longer than max_length the data is stored on the heap  using a dyamically allocated char array data.The capacity variable keeps track of the size of the allocated array.
+
+The length variable is used to store the length of the string, regardless of whether it is stored in ch or data.
+
+The optimization allows for efficient storage and retrieval of small strings, while still allowing for larger strings to be stored without the need for an external buffer.
+
+To determine whether the SSO optimization should be used, we can compare the length of the string with the maximum length for the SSO. If the length is less than or equal to the maximum length, we use the character array inside the object to store the string data, otherwise, we allocate a new buffer on the heap.
+
+The combination of struct and union allows the MyStringSSO class to efficiently manage memory for strings of varying lengths and by using this combination  of struct and union it reduces the size of class to 24 bytes.
+The ch array that I use in  MyStringSSO class does not take any additional memory beyond the size of the object itself.
+
+The reason for this is that the union data structure allows multiple data members to occupy the same memory space. In my implementation, the ch array and the data pointer share the same memory space, so only one of them is active at a time.
+
+When a MyStringSSO object is created, memory is allocated for the object itself, which includes the length member and the union. The ch array is then stored in the memory space allocated for the union.
+
+
