@@ -33,8 +33,10 @@ Implement a `Rational` structure for working with rational numbers.
   - Function to determine if the rational number is an integer.
     - *Имплементирайте функция, която връща дали е цяло число.*
 
-Теоретични задачи:
-Задача 1: Намерете грешките в кода, поправете ги и кажете какво ще отпечата.
+   ## ТЕОРЕТИЧНИ ЗАДАЧИ
+  Задача 1: Намерете грешките в кода, поправете ги и кажете какво ще отпечата
+  #include <iostream>
+using namespace std;
 
 enum Fruit {
 	APPLE,
@@ -44,7 +46,7 @@ enum Fruit {
 enum Color {
 	RED = 107,
 	BLUE,
-	ORANGE
+	ORANGE // Грешка: Дублиране на ORANGE
 };
 
 enum class Cars {
@@ -55,26 +57,5 @@ enum class Cars {
 int main() {
     
 	cout << BLUE << endl;
-	cout << (BMW == RED);
-}
-Задача 2: Ще се компилира ли кодът?
-
-enum Fruit : uint8_t { APPLE = 1000, ORANGE };
-
-int main() {
-
-cout << ORANGE;
-}
-
-Задача 3: Какво ще отпечата кодът?
-
-enum Fruit : uint8_t {
-	APPLE = 255,
-	ORANGE
-};
-
-
-int main() {
-    
-	cout << (int)ORANGE;
+	cout << (BMW == RED); // Грешка: BMW е от enum class и не може да се сравнява с RED
 }
