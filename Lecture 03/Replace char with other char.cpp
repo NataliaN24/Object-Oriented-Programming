@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+//Да се напише функция, която заменя всяко срещане на символ във файл с друг символ. Съдържанието на файла не трябва да се зарежда в паметта.
 
 void replace(char ch1, char ch2, std::fstream& file)
 {
