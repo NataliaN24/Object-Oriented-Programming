@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+
+//Solution 1
 //Да се напише функция, която заменя всяко срещане на символ във файл с друг символ. Съдържанието на файла не трябва да се зарежда в паметта.
 
 void replace(char ch1, char ch2, std::fstream& file)
@@ -17,6 +19,27 @@ void replace(char ch1, char ch2, std::fstream& file)
 		file.flush();
 	}
 }
+//Solution 2
+
+void replace(std::fstream& file, char a, char b)
+{
+	char current;
+	while (file.get(current))
+	{
+		if (current == a)  
+		{
+			file.seekp(-1, std::ios::cur);
+			file.put(b);
+			file.flush();
+		}
+		if (current == file.eof())
+		{
+			break;
+		}
+	}
+}
+
+//
 
 int main()
 {
