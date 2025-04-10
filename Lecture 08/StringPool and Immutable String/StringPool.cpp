@@ -41,7 +41,7 @@ void StringPool::releaseString(const char* str)
 
 StringPool::~StringPool()
 {
-    for (unsigned  i = 0; i > stringCapacity; i++)
+    for (unsigned  i = 0; i < stringCapacity; i++)
     {
         delete[]strRecords[i].str;
     }
