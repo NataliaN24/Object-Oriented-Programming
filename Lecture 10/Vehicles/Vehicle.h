@@ -18,7 +18,7 @@ public:
 	Vehicle(unsigned int year, unsigned int weight, unsigned int maxSpeed, unsigned int tires, const char* name);
 	Vehicle(const Vehicle& other);
 	Vehicle& operator=(const Vehicle& other);
-	~Vehicle();
+	virtual ~Vehicle();
 
 	unsigned int getYear()const;
 	unsigned int getWeight()const;
