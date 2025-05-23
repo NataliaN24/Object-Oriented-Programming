@@ -1,7 +1,10 @@
 #pragma once
+#include<iostream>
+#include<fstream>
 
 template<typename T, typename D>
 class Pair {
+protected:
 	T first;
 	D second;
 
@@ -20,7 +23,21 @@ public:
 	void setFirst(T&& newValue);
 	void setSecond(const D& newValue);
 	void setSecond(D&& newValue);
+
+	template<typename T, typename D>
+	friend std::istream& operator>>(std::istream& is, Pair<T, D>& p);
+	template<typename T, typename D>
+	friend std::ostream& operator<<(std::ostream& os, const Pair<T, D>& p);
+
+	bool operator==(const Pair<T, D>& other)const;
+	bool operator!=(const Pair<T, D>& other)const;
+	bool operator<(const Pair<T, D>& other)const;
+	bool operator<=(const Pair<T, D>& other)const;
+	bool operator>=(const Pair<T, D>& other)const;
+	bool operator>(const Pair<T, D>& other)const;
+
 };
+
 
 template<typename T, typename D>
 Pair<T, D>::Pair(const T& first, const D& second) : first(first), second(second)
@@ -77,4 +94,52 @@ void Pair<T, D>::setSecond(const D& newValue) {
 template<typename T, typename D>
 void Pair<T, D>::setSecond(D&& newValue) {
 	second = std::move(newValue);
+}
+
+template<typename T, typename D>
+inline bool Pair<T, D>::operator==(const Pair<T, D>& other) const
+{
+	return getFirst() == other.getFirst() && getSecond() == other.getSecond();
+}
+
+template<typename T, typename D>
+inline bool Pair<T, D>::operator!=(const Pair<T, D>& other) const
+{
+	return !(*this == other);
+}
+
+template<typename T, typename D>
+inline bool Pair<T, D>::operator<(const Pair<T, D>& other) const
+{
+	return getFirst() < other.getFirst() || (getFirst() == other.getFirst() && getSecond() < other.getSecond());
+}
+
+template<typename T, typename D>
+inline bool Pair<T, D>::operator<=(const Pair<T, D>& other) const
+{
+	return  *this < other || *this == other;
+}
+
+template<typename T, typename D>
+inline bool Pair<T, D>::operator>=(const Pair<T, D>& other) const
+{
+	return !(*this < other);
+}
+
+template<typename T, typename D>
+inline bool Pair<T, D>::operator>(const Pair<T, D>& other) const
+{
+	return !(*this <= other);
+}
+
+template<typename T,typename D>
+std::istream& operator>>(std::istream& is, Pair<T, D>& p)
+{
+	return is >> p.first >> p.second;
+}
+
+template<typename T, typename D>
+std::ostream& operator<<(std::ostream& os, const Pair<T, D>& p)
+{
+	return os << "(" << p.getFirst() << "," << p.getSecond() << ")";
 }
