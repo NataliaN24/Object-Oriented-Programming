@@ -120,14 +120,14 @@ WeakPtr<T>::~WeakPtr()
 template <typename T>
 bool WeakPtr<T>::expired() const
 { 
-	return counter && counter->useCount == 0;
+	return counter && counter->useCount == 0;//checks if object has been deleted
 }
 
 template <typename T>
 SharedPtr<T> WeakPtr<T>::lock() const
 {
 	if (expired())
-		return SharedPtr<T>();
+		return SharedPtr<T>(); //returns empty SharedPtr
 	else
-		return SharedPtr<T>(*this);
+		return SharedPtr<T>(*this); // constructs a sharedPtr from weakPtr
 }
