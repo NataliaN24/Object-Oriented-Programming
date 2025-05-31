@@ -24,3 +24,29 @@ void Test::print() const {
         std::cout << "Points: " << points[i] << "\n";
     }
 }
+
+void Test::runTest()
+{
+    for (int i = 0; i < MAX_NUM_QUESTIONS; i++)
+    {
+        std::cout << "Questions " << i + 1 << ": " << questions.getQuestion(i) << "\n";
+        answers[i].print();
+
+        int choice;
+        std::cout << "Enter your choice:";
+        std::cin >> choice;
+        if (answers[i].isCorrect(choice)) {
+            std::cout << "Correct! +" << points[i] << " points.\n";
+            totalScore += points[i];
+        }
+        else {
+            std::cout << "Incorrect. No points.\n";
+        }
+    }
+
+}
+
+size_t  Test::getTotalPointsOfUser() const
+{
+    return totalScore;
+}
