@@ -1,36 +1,40 @@
 #include "Test.h"
 
 int main() {
-   
-    int qIDs[MAX_NUM_QUESTIONS] = { 1, 2, 3 };
-    char qTitles[MAX_NUM_QUESTIONS][MAX_NUM_TITLE + 1] = {
+    int ids[] = { 1, 2, 3 };
+    char titles[3][MAX_NUM_TITLE + 1] = {
         "Capital of France?",
-        "5 + 7 equals?",
-        "Color of the sky?"
+        "2 + 2 equals?",
+        "Sky color?"
     };
-    Questions qs(qIDs, qTitles);
 
-    Answer answers[MAX_NUM_QUESTIONS];
+    Questions q;
+    q.setTitlesInQuestions(ids, titles);
 
-    char opts1[MAX_NUM_OPTIONS][MAX_NUM_ANSWER_DESCRIPTION + 1] = {
-        "Paris", "Rome", "Berlin", "Madrid"
+    char a1[MAX_NUM_OPTIONS][MAX_NUM_ANSWER_DESCRIPTION + 1] = {
+        "Berlin", "Madrid", "Paris", "London"
     };
-    char opts2[MAX_NUM_OPTIONS][MAX_NUM_ANSWER_DESCRIPTION + 1] = {
-        "10", "11", "12", "13"
+    char a2[MAX_NUM_OPTIONS][MAX_NUM_ANSWER_DESCRIPTION + 1] = {
+        "3", "4", "5", "6"
     };
-    char opts3[MAX_NUM_OPTIONS][MAX_NUM_ANSWER_DESCRIPTION + 1] = {
+    char a3[MAX_NUM_OPTIONS][MAX_NUM_ANSWER_DESCRIPTION + 1] = {
         "Red", "Blue", "Green", "Yellow"
     };
 
-    answers[0] = Answer(opts1);
-    answers[1] = Answer(opts2);
-    answers[2] = Answer(opts3);
+    Answer answers[MAX_NUM_QUESTIONS] = {
+        Answer(a1, Options::C),
+        Answer(a2, Options::B),
+        Answer(a3, Options::B)
+    };
 
-    size_t pts[MAX_NUM_QUESTIONS] = { 5, 3, 2 };
+    size_t pts[MAX_NUM_QUESTIONS] = { 5, 2, 3 };
 
     Test test;
-    test.setTest(qs, answers, pts);
+    test.setTest(q, answers, pts);
     test.print();
+    test.runTest();
+
+    std::cout << "Total points earned: " << test.getTotalPointsOfUser() << "\n";
 
     return 0;
 }
