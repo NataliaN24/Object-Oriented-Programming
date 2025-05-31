@@ -4,17 +4,18 @@ Answer::Answer()
 {
 }
 
-Answer::Answer( char answer[][MAX_NUM_ANSWER_DESCRIPTION + 1])
+Answer::Answer( char answer[][MAX_NUM_ANSWER_DESCRIPTION + 1], Options correct)
 {
-	setAnswerForEachOption( answer);
+	setAnswerForEachOption( answer,correct);
 }
 
-void Answer::setAnswerForEachOption( char answer[][MAX_NUM_ANSWER_DESCRIPTION + 1])
+void Answer::setAnswerForEachOption( char answer[][MAX_NUM_ANSWER_DESCRIPTION + 1], Options correct)
 {
 	for (int i = 0; i < MAX_NUM_OPTIONS; i++)
 	{
 		std::strcpy(answerDescription[i], answer[i]);
 	}
+	correctOption = correct;
 }
 
 void Answer::print() const {
@@ -22,4 +23,9 @@ void Answer::print() const {
 	for (int i = 0; i < MAX_NUM_OPTIONS; ++i) {
 		std::cout << "Option " << optionLabels[i] << ": " << answerDescription[i] << "\n";
 	}
+}
+
+bool Answer::isCorrect(int choice) const
+{
+	return choice == (int)correctOption;
 }
