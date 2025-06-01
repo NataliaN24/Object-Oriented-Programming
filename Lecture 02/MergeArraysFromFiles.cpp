@@ -114,3 +114,84 @@ int main()
 {
 	mergeArrayFromFiles("file1.txt", "file2.txt", "merged.txt");
 }
+
+//second option
+
+#include <iostream>
+#include <fstream>
+
+int* readFromFile(const char* fileName, int& count) {
+    std::ifstream ifs(fileName);
+    if (!ifs) {
+        std::cerr << "Cannot open file: " << fileName << std::endl;
+        count = 0;
+        return nullptr;
+    }
+
+    int temp;
+    count = 0;
+
+    // Първо броим колко числа има
+    while (ifs >> temp) {
+        count++;
+    }
+
+    // Връщаме се в началото на файла
+    ifs.clear();
+    ifs.seekg(0);
+
+    // Създаваме масив
+    int* arr = new int[count];
+    for (int i = 0; i < count; ++i) {
+        ifs >> arr[i];
+    }
+
+    return arr;
+}
+
+int* merge(const int* arr1, int size1, const int* arr2, int size2) {
+    int* merged = new int[size1 + size2];
+    int i = 0, j = 0, k = 0;
+
+    while (i < size1 && j < size2) {
+        if (arr1[i] < arr2[j]) {
+            merged[k++] = arr1[i++];
+        } else {
+            merged[k++] = arr2[j++];
+        }
+    }
+
+    while (i < size1) {
+        merged[k++] = arr1[i++];
+    }
+
+    while (j < size2) {
+        merged[k++] = arr2[j++];
+    }
+
+    return merged;
+}
+
+int main() {
+    int size1, size2;
+    int* arr1 = readFromFile("file1.txt", size1);
+    int* arr2 = readFromFile("file2.txt", size2);
+
+    if (!arr1 || !arr2) return 1;
+
+    int* merged = merge(arr1, size1, arr2, size2);
+
+    std::ofstream ofs("merged.txt");
+    for (int i = 0; i < size1 + size2; ++i) {
+        ofs << merged[i];
+        if (i < size1 + size2 - 1)
+            ofs << " ";
+    }
+
+    delete[] arr1;
+    delete[] arr2;
+    delete[] merged;
+
+    return 0;
+}
+
