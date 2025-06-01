@@ -40,3 +40,27 @@ int main()
 {
 	std::cout << getLinesCount("Source.cpp");
 }
+
+//second solution
+constexpr char symbol = '\n';
+
+int count(std::ifstream&ifs) {
+	int rows = 0;
+	while (!ifs.eof())
+	{
+		if (ifs.get() == symbol)
+		{
+			rows++;
+		}
+	}
+	return rows+1;
+	
+}
+
+
+int main() {
+
+	std::ifstream ifs("Source.cpp");
+	std::cout << count(ifs);
+
+}
