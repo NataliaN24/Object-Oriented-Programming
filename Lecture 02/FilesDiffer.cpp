@@ -50,3 +50,39 @@ int main()
 	compare(ifs1, ifs2);
 	
 }
+
+//second solution
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+int main() {
+    std::ifstream ifs1("file1.txt");
+    std::ifstream ifs2("file2.txt");
+
+    if (!ifs1 || !ifs2) {
+        std::cerr << "Error opening files." << std::endl;
+        return 1;
+    }
+
+    char buff1[1024];
+    char buff2[1024];
+    int line = 1;
+
+    while (ifs1.getline(buff1, 1024) && ifs2.getline(buff2, 1024)) {
+        if (strcmp(buff1, buff2) != 0) {
+            std::cout << "Difference at line " << line << ":" << std::endl;
+            std::cout << buff1 << std::endl;
+            break;
+        }
+        ++line;
+    }
+
+    if ((ifs1 && !ifs2) || (!ifs1 && ifs2)) {
+        std::cout << "Files differ in length at line " << line << "." << std::endl;
+    }
+
+    return 0;
+}
+
