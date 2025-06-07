@@ -17,11 +17,11 @@
 
 class Car
 {
-	size_t year;
-	unsigned int maxSpeed;
 	char* name;
 	unsigned int* km;
+	unsigned int maxSpeed;
 	size_t countOfKm;
+	size_t year;
 public:
 	Car();
 	Car(size_t _year, unsigned int _maxSpeed, const char* _name, const unsigned int* _km,size_t _countOfKm);
