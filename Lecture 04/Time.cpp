@@ -169,3 +169,68 @@ int main() {
 
 	return 0;
 }
+
+
+//OTHER APPROACH
+#include <iostream>
+#include <cstring>
+#include<fstream>
+#include <iomanip>
+using namespace std;
+#pragma warning(disable:4996)
+
+constexpr unsigned SECONDS_IN_HOURS = 3600;
+constexpr unsigned SECONDS_IN_MINUTE = 60;
+constexpr unsigned DAY_SECONDS = 24 * 3600;
+constexpr unsigned LOWER_DINNER_HOUR = 20;
+constexpr unsigned LOWER_DINNER_MIN = 30;
+constexpr unsigned UPPER_DINNER_HOUR = 22;
+constexpr unsigned LOWER_PARTY_HOUR = 23;
+constexpr unsigned UPPER_PARTY_HOUR = 6;
+
+class Time {
+	int hours;
+	int minutes;
+	int seconds;
+
+	int convertToSeconds() {
+		return seconds + hours * SECONDS_IN_HOURS + minutes * SECONDS_IN_MINUTE;
+	}
+public:
+
+	Time():Time(0,0,0){}
+	Time(int h,int m,int s):hours(h),minutes(m),seconds(s){}
+
+	Time gettimeTillMidnight() {
+		int getCurrentTimeSeconds = convertToSeconds();
+		int secondsLeft = DAY_SECONDS - getCurrentTimeSeconds;
+
+		Time result;
+		result.hours = secondsLeft / SECONDS_IN_HOURS;
+		int remaining = secondsLeft % SECONDS_IN_HOURS;
+		result.minutes = remaining / SECONDS_IN_MINUTE;
+		result.seconds = remaining % SECONDS_IN_MINUTE;
+		return result;
+	}
+
+	void addOneSecond() {
+		int totalSeconds = convertToSeconds()+1;
+		if (totalSeconds >= DAY_SECONDS)
+			totalSeconds = 0;
+		int remaining = totalSeconds % SECONDS_IN_HOURS;
+		minutes = remaining / SECONDS_IN_MINUTE;
+		seconds = remaining % SECONDS_IN_MINUTE;
+	}
+
+	bool isTimeForDinner(){ //20:30 -22:00
+		Time lowerDinnerBound(20, 30, 00);
+		Time upperDinnerBound(22, 00, 00);
+		int lowerBound = lowerDinnerBound.convertToSeconds();
+		int upperBound = upperDinnerBound.convertToSeconds();
+		int currentTime = convertToSeconds();
+		return currentTime >= lowerBound && currentTime <= upperBound;
+	
+	
+	}
+
+};
