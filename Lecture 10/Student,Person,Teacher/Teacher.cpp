@@ -43,6 +43,13 @@ Teacher::Teacher(const char* name, int age, const char* const* subjects, size_t 
 {
 	this->subject = copyArrayOfString(subjects, subjectsCount);
 	this->subjectsCount = subjectsCount;
+
+	/*this->subjects = new char* [count];
+		for (int i = 0; i < count; i++)
+		{
+			this->subjects[i] = new char [strlen(subjects[i]) + 1];
+			strcpy(this->subjects[i], subjects[i]);
+		}*/
 }
 
 Teacher::Teacher(const Teacher& other)
