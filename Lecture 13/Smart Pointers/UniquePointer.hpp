@@ -73,4 +73,4 @@ UniquePointer<T>::~UniquePointer()
 {
 	delete ptr;
 }
-\
+
