@@ -88,6 +88,25 @@ bool IntSet::isSubsetOf(const IntSet& other)const
     }
     return true;
 }
+//other solution
+//bool IntSet::isSubsetOf(const IntSet& other)const
+//{
+//	for (int i = 0; i < count; i++)
+//	{
+//		bool found=false;
+//		for(int j=0;j<other.count;j++)
+//		{
+//			if(numbers[i]==other->numbers[j])
+//			{
+//				found=true;
+//				break;
+//			}
+//			
+//		}
+//		if(!found)return false;
+//	}
+//	return true;
+/
 
 bool IntSet::intersects(const IntSet& other)const
 {
