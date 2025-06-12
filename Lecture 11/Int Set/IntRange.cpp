@@ -28,6 +28,7 @@ int IntRange::get(int i) const
     return numbers[i];
 }
 
+//the last two functions no need to be overridden
 bool IntRange::isSubsetOf(const IntSet& other) const {
     for (int i = 0; i < count; i++) {
         if (!other.member(numbers[i])) {
