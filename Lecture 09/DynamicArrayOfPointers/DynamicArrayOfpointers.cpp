@@ -14,7 +14,7 @@ void DynamicArrayOfPointers::copyFrom(const DynamicArrayOfPointers& other)
     data = new A*[other.capacity];
     for (int i = 0; i < other.count; i++)
     {
-        if (other.data[i] = nullptr)
+        if (other.data[i] == nullptr)
         {
             data[i] = nullptr;
         }
